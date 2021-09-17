@@ -1,27 +1,26 @@
+
 const tasks = [
-    { text: 'Buy ball', done: false },
-    { text: 'Market place', done: false },
-    { text: 'Buy now', done: false },
-    { text: 'tiubiky', done: true },
+    { text: 'Buy milk', done: false },
+    { text: 'Pick up Tom from airport', done: false },
+    { text: 'Visit party', done: false },
+    { text: 'Visit doctor', done: true },
+    { text: 'Buy meat', done: true },
   ];
-  
-  const renderList = tasksList => {
-    const list = document.querySelector('.list');
-    const elemetsList = tasksList
-      .sort((a, b) => a.done - b.done)
-      .map(({ text, done }) => {
-        const listItem = document.createElement('li');
-        listItem.classList.add('list__item');
-        const checkbox = document.createElement('input');
-        checkbox.setAttribute('type', 'checkbox');
-        checkbox.checked = done;
-        if (done === true) listItem.classList.add('list__item_done');
-        listItem.append(checkbox, text);
-  
-        return listItem;
-      });
-  
-    list.append(...elemetsList);
-  };
+
+const listElem = document.querySelector('.list');
+const todoListItems = tasks.map(({text, done}) => {
+    const newItem = document.createElement('li');
+    if(done){
+        newItem.classList.add('list__item_done');
+    }
+    newItem.classList.add('list__item');
+    const checkboxElem = document.createElement('input');
+    checkboxElem.classList.add('list__item-checkbox');
+    checkboxElem.setAttribute('type', 'checkbox');
+    checkboxElem.checked = done;
+    newItem.append(checkboxElem, text);
+    return newItem
+});
+listElem.append(...todoListItems)
   
   renderList(tasks);
